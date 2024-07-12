@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete</title>
+</head>
+<body>
+    
+    <h4>are you sure to delete</h4>
+    <form  method="post">
+        {% csrf_token %}
+        <label>yes</label>
+        <input type="radio" id="yes" name="choice" value="yes">
+        <label>no</label>
+        <input type="radio" id="no" name="choice" value="no"><br>
+      
+      
+    <input type="submit" value="ok">
+</form>
+</body>
+</html>

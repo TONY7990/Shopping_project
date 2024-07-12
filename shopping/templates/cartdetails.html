@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>details</title>
+</head>
+<body>
+    <!-- <div class="card bg-dark text-white">
+       
+        <div class="card-img-overlay">
+            {% for i in cartview %}
+            <a><img src= {{ cartview.image.url }} style="width: 500px; height: 500px;"></a>
+          <h1 class="card-title">{{cartview.product}}</h1>
+          <p class="card-text" style="color: black;">{{cartview.quantity}}</p>
+          <h1 class="card-text">PRICE ${{cartview.id}}</h1>
+         <div class="cart-item">
+            <span>Item Name</span>
+            <button class="button" onclick="decrementQuantity()">-</button>
+            <span class="quantity" id="item-quantity">1</span>
+            <button class="button" onclick="incrementQuantity()">+</button>
+        </div>
+          
+          {% endfor %}  -->
+        <!-- </div>
+      </div>   -->
+      {% for i in cartview %}
+      <div class="card" style="width: 18rem;">
+        <img src={{ i.product.image.url }} class="card-img-top" alt="...">
+        
+        <div class="card-body">
+            
+          <h5 class="card-title">{{i.product}}</h5>
+          <!-- <p class="card-text">{{i.quantity}}</p> -->
+          <h1 class="card-text">PRICE ${{i.id}}</h1>
+          <div class="cart-item">
+            <span>Item Name</span>
+            <form action="{% url 'decrement' i.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="button">-</button>
+          </form>
+          <h4>quatity{{i.quantity}}</h4>
+          <form action="{% url 'increment' i.id %}" method="post">
+            {% csrf_token %}
+
+            <button type="submit" class="button">+</button>
+        </form>
+        <form action="{% url 'delete' i.id %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="button">delete</button>
+      </form>
+             
+            <!-- <button class="button"href="{% url 'decrement' i.id %}">-</button>
+            <span class="quantity" id="item-quantity">{{i.quantity}}</span>
+            <button class="button" href="{% url 'increment' i.id %}">+</button>
+            <a href="{% url 'delete' i.id %}" class="btn btn-danger">delete</a> -->
+           </div>
+
+        </div>
+      </div>
+      {% endfor %}
+      <a href="{% url 'checkout' %}"><button class="btn btn-primary">proceed checkout</button></a>
+
+    
+</body>
+</html>
+{% endblock %}

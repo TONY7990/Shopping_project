@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>details</title>
+</head>
+<body>
+    <div class="card bg-dark text-white">
+        <img src= {{ product.image.url }} class="card-img" alt="..." style="width: 500px; height: 500px;">
+        <div class="card-img-overlay">
+          <h1 class="card-title">{{product.name}}</h1>
+          <p class="card-text" style="color: black;">{{product.desc}}</p>
+          <h1 class="card-text">PRICE ${{product.price}}</h1>
+
+          
+          <button class="btn btn-primary"><a href="{% url 'addtocart' product.id %}">add to Cart</a></button>
+        </div>
+      </div>
+      <div>
+      {% for message in messages %}
+        <h3> {{message}}</h3>
+        {% endfor %}
+      </div>
+      
+
+    
+    
+</body>
+</html>
+{% endblock %}
